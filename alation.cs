@@ -1,3 +1,4 @@
+// https://coderpad.io/DQF9FEZQ
 using System;
 using System.IO;
 using System.Reflection;
@@ -115,13 +116,20 @@ internal class trie<T>
                 values.Add(value);
             }
         }
-        if(!edges.ContainsKey(s[0]))
+        if(s.Length>0)
         {
-            edges[s[0]] = new trie<T>(maxResults);
-        }
-        if(s.Length>1)
-        {
-            edges[s[0]].Add(s.Substring(1,s.Length-1), value);
+            if(!edges.ContainsKey(s[0]))
+            {
+                edges[s[0]] = new trie<T>(maxResults);
+            }
+            if(s.Length>1)
+            {
+                edges[s[0]].Add(s.Substring(1,s.Length-1), value);
+            }
+            else
+            {
+                edges[s[0]].Add("", value);
+            }
         }
         return this;
     }
